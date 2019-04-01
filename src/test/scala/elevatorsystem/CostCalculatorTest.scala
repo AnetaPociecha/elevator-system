@@ -82,7 +82,7 @@ class CostCalculatorTest extends FunSuite {
     val calculator: CostCalculator = new CostCalculator(2,1)
     val elevator: Elevator = new Elevator(1,0,0)
 
-    val res = calculator.evaluate(elevator)
+    val res: Double = calculator.evaluate(elevator)
 
     res should be (1.4 +- 0.0001)
   }

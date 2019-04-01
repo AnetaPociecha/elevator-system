@@ -58,5 +58,4 @@ class CostCalculator(
       || ( floorDifference < 0 && directionsEqual && direction == -1 )
       || lastDestination == floor ) true else false
   }
-
 }

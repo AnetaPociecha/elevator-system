@@ -1,8 +1,8 @@
 package elevatorsystem
 
 class Controller (
-                elevators: List[Elevator],
-                controllerMode: ControllerMode
+                val elevators: List[Elevator],
+                val controllerMode: ControllerMode
                   = new NormalControllerMode()
                 ) {
 
@@ -35,5 +35,4 @@ class Controller (
   def verifyElevatorAvailable(): Unit = {
     if(elevators.isEmpty) throw new Exception("Elevator does not exit")
   }
-
 }
