@@ -2,11 +2,11 @@ package elevatorsystem
 
 import org.scalatest.FunSuite
 
-class ElevatorEngineTest extends FunSuite {
+class EngineTest extends FunSuite {
 
   test("testMove") {
     val elevator: Elevator = new Elevator(1,3,5)
-    val engine: ElevatorEngine = new ElevatorEngine(elevator)
+    val engine: Engine = new Engine(elevator)
     elevator.call(8,1)
 
     engine.move()
@@ -32,10 +32,10 @@ class ElevatorEngineTest extends FunSuite {
 
   test("testHandleSimpleMove") {
     val elevator1: Elevator = new Elevator(1,3,6)
-    val engine1: ElevatorEngine = new ElevatorEngine(elevator1)
+    val engine1: Engine = new Engine(elevator1)
 
     val elevator2: Elevator = new Elevator(1,6,3)
-    val engine2: ElevatorEngine = new ElevatorEngine(elevator2)
+    val engine2: Engine = new Engine(elevator2)
 
     engine1.handleSimpleMove()
     engine2.handleSimpleMove()
@@ -49,7 +49,7 @@ class ElevatorEngineTest extends FunSuite {
 
   test("testHandleStop") {
     val elevator: Elevator = new Elevator(1,3,3)
-    val engine: ElevatorEngine = new ElevatorEngine(elevator)
+    val engine: Engine = new Engine(elevator)
 
     engine.handleStop()
 

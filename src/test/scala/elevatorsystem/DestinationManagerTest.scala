@@ -2,9 +2,9 @@ package elevatorsystem
 
 import org.scalatest.FunSuite
 
-class ElevatorDestinationManagerTest extends FunSuite {
+class DestinationManagerTest extends FunSuite {
 
-  val manager: ElevatorDestinationManager = new ElevatorDestinationManager()
+  val manager: DestinationManager = new DestinationManager()
 
   test("testHasNext") {
     assertResult(manager.hasNext())(false)

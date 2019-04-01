@@ -35,7 +35,7 @@ class ElevatorSystem(
   @throws(classOf[Exception])
   def getElevatorById(id: Int): Elevator = {
     val elevator: Option[Elevator] = elevators.toStream.find(e => e.id == id)
-    if(elevator.isEmpty) throw new Exception(s"Elevator with id ${id} does not exist")
+    if(elevator.isEmpty) throw new Exception(s"Elevator with id $id does not exist")
     else elevator.get
   }
 

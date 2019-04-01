@@ -6,17 +6,22 @@ class Elevator(
               var destination: Int = 0
               ) {
 
-  val destinationManager: ElevatorDestinationManager
-    = new ElevatorDestinationManager()
-  val elevatorEngine: ElevatorEngine
-    = new ElevatorEngine(this)
+  val destinationManager: DestinationManager
+    = {
+    val diff: Int = destination - location
+    val currentDirection: Int = if(diff == 0) 0 else if(diff > 0) 1 else -1
+    new DestinationManager(currentDirection)
+  }
+  val elevatorEngine: Engine
+    = new Engine(this)
 
   def step(): Unit = {
     elevatorEngine.move
   }
 
-  def call(location: Int, direction: Int): Unit = {
-    destinationManager.add(location, direction)
+  def call(floor: Int, direction: Int): Unit = {
+    if(floor != location)
+      destinationManager.add(floor, direction)
   }
 
   def update(newLocation: Int, newDestination: Int): Unit = {
