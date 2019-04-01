@@ -6,7 +6,7 @@ class Controller(
 
   def assign(location: Int, direction: Int): Unit = {
     val elevator = pickElevator(location,direction)
-    elevator.call(location)
+    elevator.call(location, direction)
   }
 
   def pickElevator(location: Int, direction: Int): Elevator = {

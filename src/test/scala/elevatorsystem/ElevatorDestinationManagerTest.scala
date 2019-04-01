@@ -8,12 +8,12 @@ class ElevatorDestinationManagerTest extends FunSuite {
 
   test("testHasNext") {
     assertResult(manager.hasNext())(false)
-    manager.add(1)
+    manager.add(1,1)
     assertResult(manager.hasNext())(true)
   }
 
   test("testAdd") {
-    manager.add(2)
+    manager.add(2,1)
     assertResult(scala.collection.mutable.Queue(1,2))(manager.destinations)
   }
 

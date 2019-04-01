@@ -9,7 +9,7 @@ class ElevatorSystem(
   override def pickup(location: Int, direction: Int): Unit = {
     checkFloor(location)
     checkDirection(direction)
-    controller.assign(location, direction) // TO DO
+    controller.assign(location, direction)
   }
 
   override def update(elevatorId: Int, location: Int, destination: Int): Unit = {
@@ -20,7 +20,10 @@ class ElevatorSystem(
     elevator.update(location, destination)
   }
 
-  override def step(): Unit = ???
+  override def step(): Unit = {
+    for(elevator <- elevators)
+      elevator.step()
+  }
 
   override def status(): List[(Int, Int, Int)] = {
     var status: List[(Int, Int, Int)] = List()

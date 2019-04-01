@@ -16,14 +16,6 @@ class ElevatorSystemTest extends FunSuite {
     }
   }
 
-  test("testUpdate") {
-
-  }
-
-  test("testStep") {
-
-  }
-
   test("testStatus") {
     val status = elevatorSystem.status()
     assertResult(List((2,3,4),(1,2,3)))(status)
@@ -39,4 +31,30 @@ class ElevatorSystemTest extends FunSuite {
     }
   }
 
+
+  test("testStep") {
+
+  }
+
+  test("testUpdate") {
+
+    elevatorSystem.update(1,4,5)
+    val elev: Elevator = elevatorSystem.getElevatorById(1)
+    assertResult(4)(elev.location)
+    assertResult(5)(elev.destination)
+    assertResult(3)(elev.destinationManager.destinations.head)
+
+    assertThrows[Exception] {
+      elevatorSystem.update(3,2,2)
+    }
+    assertThrows[Exception] {
+      elevatorSystem.update(3,2,2)
+    }
+    assertThrows[Exception] {
+      elevatorSystem.update(1,-2,2)
+    }
+    assertThrows[Exception] {
+      elevatorSystem.update(3,2,-2)
+    }
+  }
 }
