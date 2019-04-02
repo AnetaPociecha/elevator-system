@@ -6,13 +6,8 @@ class DestinationManagerTest extends FunSuite {
 
   val manager: DestinationManager = new DestinationManager()
 
-  test("testHasNext") {
-    assertResult(manager.hasNext())(false)
-    manager.add(1,1)
-    assertResult(manager.hasNext())(true)
-  }
-
   test("testAdd") {
+    manager.add(1,1)
     manager.add(2,1)
     assertResult(scala.collection.mutable.Queue(1,2))(manager.destinations)
   }
@@ -27,5 +22,4 @@ class DestinationManagerTest extends FunSuite {
     assertResult(3)(res)
     assertResult( scala.collection.mutable.Queue(1,2))(manager.destinations)
   }
-
 }

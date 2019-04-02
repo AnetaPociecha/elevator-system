@@ -8,29 +8,27 @@ class CostCalculator(
                     ) {
 
   def evaluate(elevator: Elevator): Double = {
-    (controllerMode.waitingTimeWeight * evaluateWaitingTime(elevator)
+    ( controllerMode.waitingTimeWeight * evaluateWaitingTime(elevator)
     + controllerMode.numberOfStopsWeight * evaluateNumberOfStops(elevator)
-    + controllerMode.straightforwardWeight * evaluateStraightforward(elevator))
+    + controllerMode.straightforwardWeight * evaluateStraightforward(elevator) )
   }
 
-  def evaluateWaitingTime(elevator: Elevator): Double = {
-    val destList = elevator.destinationManager.destinations
-    var tmpLocation = elevator.destination
-
-    var time: Double = 0
+  def evaluateWaitingTime(elevator: Elevator): Int = {
+    var time: Int = 0
     time += distance(elevator.destination, elevator.location)
 
-    for(index <- destList.indices) {
-      time += distance(tmpLocation, destList(index))
-      tmpLocation = destList(index)
-    }
+    var tmpLocation = elevator.destination
 
+    for(destination <- elevator.destinationManager.destinations) {
+      time += distance(tmpLocation, destination)
+      tmpLocation = destination
+    }
     time += distance(tmpLocation, floor)
 
     time
   }
 
-  def distance(start: Int, stop: Int): Double = {
+  def distance(start: Int, stop: Int): Int = {
     Math.abs(start - stop)
   }
 
@@ -54,7 +52,7 @@ class CostCalculator(
     val directionsEqual: Boolean = direction == lastDirection
     val floorDifference: Int = lastDestination - floor
 
-    if( ( floorDifference > 0 && directionsEqual && direction == 1 )
+    if(( floorDifference > 0 && directionsEqual && direction == 1 )
       || ( floorDifference < 0 && directionsEqual && direction == -1 )
       || lastDestination == floor ) true else false
   }

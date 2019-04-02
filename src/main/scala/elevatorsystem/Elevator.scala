@@ -6,12 +6,11 @@ class Elevator(
               var destination: Int = 0
               ) {
 
-  val destinationManager: DestinationManager
-    = {
-      val diff: Int = destination - location
-      val currentDirection: Int = if(diff == 0) 0 else if(diff > 0) 1 else -1
-      new DestinationManager(currentDirection)
-    }
+  val destinationManager: DestinationManager = {
+    val diff: Int = destination - location
+    val direction: Int = if(diff == 0) 0 else if(diff > 0) 1 else -1
+    new DestinationManager(direction)
+  }
   val elevatorEngine: Engine
     = new Engine(this)
 

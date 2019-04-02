@@ -10,10 +10,6 @@ class DestinationManager(
     destinations.dequeue
   }
 
-  def hasNext(): Boolean = {
-    destinations.nonEmpty
-  }
-
   def add(location: Int, direction: Int): Unit = {
     destinations += location
     lastDirection = direction
