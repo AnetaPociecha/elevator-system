@@ -7,11 +7,9 @@ class Elevator(
 
   var destination: Int = location
 
-  val destinationManager: DestinationManager
-    = new DestinationManager()
+  val destinationManager: DestinationManager = new DestinationManager()
 
-  var engine: Engine
-    = new Engine(this)
+  var engine: Engine = new Engine(this)
 
   def step(): Unit = {
     engine.move()
@@ -23,10 +21,8 @@ class Elevator(
   }
 
   def update(newLocation: Int, newDestination: Int): Unit = {
-    if(location != destination) {
-      val direction: Int = if(destination > location) 1 else -1
-      destinationManager.forceHead(destination, direction)
-    }
+    if(location != destination)
+      destinationManager.forceHead(destination)
 
     location = newLocation
     destination = newDestination
