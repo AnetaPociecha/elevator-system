@@ -29,6 +29,6 @@ class Controller (
 
   @throws(classOf[Exception])
   def verifyElevatorAvailable(): Unit = {
-    if(elevators.isEmpty) throw new Exception("Elevator does not exit")
+    if(elevators.isEmpty) throw new Exception("Elevator does not exist")
   }
 }

@@ -29,7 +29,7 @@ class CostCalculator(
   }
 
   def distance(start: Int, stop: Int): Int = {
-    Math.abs(start - stop)
+    Math.abs(stop - start)
   }
 
   def evaluateNumberOfStops(elevator: Elevator): Int = {

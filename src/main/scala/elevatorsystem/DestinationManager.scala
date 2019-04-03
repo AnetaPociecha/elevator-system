@@ -5,7 +5,8 @@ import scala.collection.mutable
 class DestinationManager(
                         ) {
 
-  var destinations: mutable.Queue[(Int, Int)] = mutable.Queue.empty[(Int,Int)]
+  var destinations: mutable.Queue[(Int, Int)]
+    = mutable.Queue.empty[(Int,Int)]
 
   def next(): Int = {
     destinations.dequeue._1
