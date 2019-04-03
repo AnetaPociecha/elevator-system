@@ -16,13 +16,9 @@ class Controller (
   def pickElevator(location: Int, direction: Int): Elevator = {
     verifyElevatorAvailable()
 
-    val costCalculator: CostCalculator
-      = new CostCalculator(location, direction)
-
-    val headCost: Double
-      = costCalculator.evaluate(elevators.head)
-    var minCostPair: (Elevator, Double)
-      = (elevators.head, headCost)
+    val costCalculator: CostCalculator = new CostCalculator(location, direction)
+    val headCost: Double = costCalculator.evaluate(elevators.head)
+    var minCostPair: (Elevator, Double) = (elevators.head, headCost)
 
     for(elevator <- elevators.tail) {
       val cost: Double = costCalculator.evaluate(elevator)

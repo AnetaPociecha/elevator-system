@@ -2,20 +2,19 @@ package elevatorsystem
 
 class Elevator(
               val id: Int = 1,
-              var location: Int = 0,
-              var destination: Int = 0
+              var location: Int = 0
               ) {
 
-  val destinationManager: DestinationManager = {
-    val diff: Int = destination - location
-    val direction: Int = if(diff == 0) 0 else if(diff > 0) 1 else -1
-    new DestinationManager(direction)
-  }
-  val elevatorEngine: Engine
+  var destination: Int = location
+
+  val destinationManager: DestinationManager
+    = new DestinationManager()
+
+  var engine: Engine
     = new Engine(this)
 
   def step(): Unit = {
-    elevatorEngine.move
+    engine.move()
   }
 
   def call(floor: Int, direction: Int): Unit = {
@@ -24,8 +23,11 @@ class Elevator(
   }
 
   def update(newLocation: Int, newDestination: Int): Unit = {
-    if(location != destination)
-      destinationManager.forceHead(destination)
+    if(location != destination) {
+      val direction: Int = if(destination > location) 1 else -1
+      destinationManager.forceHead(destination, direction)
+    }
+
     location = newLocation
     destination = newDestination
   }

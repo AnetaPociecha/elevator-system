@@ -20,8 +20,8 @@ class CostCalculator(
     var tmpLocation = elevator.destination
 
     for(destination <- elevator.destinationManager.destinations) {
-      time += distance(tmpLocation, destination)
-      tmpLocation = destination
+      time += distance(tmpLocation, destination._1)
+      tmpLocation = destination._1
     }
     time += distance(tmpLocation, floor)
 
@@ -37,10 +37,10 @@ class CostCalculator(
   }
 
   def evaluateStraightforward(elevator: Elevator): Double = {
-
-    val lastDestination = if(elevator.destinationManager.destinations.nonEmpty)
-      elevator.destinationManager.destinations.last else elevator.destination
-    val lastDirection = elevator.destinationManager.lastDirection
+    val lastDestination: Int = if(elevator.destinationManager.destinations.isEmpty) elevator.destination
+      else elevator.destinationManager.destinations.last._1
+    val lastDirection: Int = if(elevator.destinationManager.destinations.isEmpty) 0
+      else elevator.destinationManager.destinations.last._2
 
     if( isStraightforward(lastDestination, lastDirection) )
       controllerMode.straightforwardCost
@@ -50,10 +50,10 @@ class CostCalculator(
 
   def isStraightforward(lastDestination: Int, lastDirection: Int): Boolean = {
     val directionsEqual: Boolean = direction == lastDirection
-    val floorDifference: Int = lastDestination - floor
+    val floorDifference: Int =  floor - lastDestination
 
     if(( floorDifference > 0 && directionsEqual && direction == 1 )
       || ( floorDifference < 0 && directionsEqual && direction == -1 )
-      || lastDestination == floor ) true else false
+      || lastDirection == 0 ) true else false
   }
 }

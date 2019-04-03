@@ -5,9 +5,15 @@ import org.scalatest.FunSuite
 class EngineTest extends FunSuite {
 
   test("testMove") {
-    val elevator: Elevator = new Elevator(1,3,5)
+    val elevator: Elevator = new Elevator(1,3)
+    elevator.call(5,1)
     val engine: Engine = new Engine(elevator)
     elevator.call(8,1)
+
+    engine.move()
+
+    assertResult(3)(elevator.location)
+    assertResult(5)(elevator.destination)
 
     engine.move()
 
@@ -31,10 +37,12 @@ class EngineTest extends FunSuite {
   }
 
   test("testHandleSimpleMove") {
-    val elevator1: Elevator = new Elevator(1,3,6)
+    val elevator1: Elevator = new Elevator(1,3)
+    elevator1.destination = 6
     val engine1: Engine = new Engine(elevator1)
 
-    val elevator2: Elevator = new Elevator(1,6,3)
+    val elevator2: Elevator = new Elevator(1,6)
+    elevator2.destination = 3
     val engine2: Engine = new Engine(elevator2)
 
     engine1.handleSimpleMove()
@@ -48,7 +56,7 @@ class EngineTest extends FunSuite {
   }
 
   test("testHandleStop") {
-    val elevator: Elevator = new Elevator(1,3,3)
+    val elevator: Elevator = new Elevator(1,3)
     val engine: Engine = new Engine(elevator)
 
     engine.handleStop()
@@ -62,5 +70,4 @@ class EngineTest extends FunSuite {
     assertResult(3)(elevator.location)
     assertResult(5)(elevator.destination)
   }
-
 }

@@ -1,21 +1,23 @@
 package elevatorsystem
 
+import scala.collection.mutable
+
 class DestinationManager(
-                          var lastDirection: Int = 0
                         ) {
 
-  var destinations: scala.collection.mutable.Queue[Int] = scala.collection.mutable.Queue.empty[Int]
+  var destinations: mutable.Queue[(Int, Int)] = mutable.Queue.empty[(Int,Int)]
 
   def next(): Int = {
-    destinations.dequeue
+    destinations.dequeue._1
   }
 
   def add(location: Int, direction: Int): Unit = {
-    destinations += location
-    lastDirection = direction
+    val item: (Int, Int) = (location, direction)
+    destinations += item
   }
 
-  def forceHead(location: Int): Unit = {
-    destinations = scala.collection.mutable.Queue(location) ++ destinations
+  def forceHead(location: Int, direction: Int): Unit = {
+    val item: (Int, Int) = (location, direction)
+    destinations = mutable.Queue(item) ++ destinations
   }
 }

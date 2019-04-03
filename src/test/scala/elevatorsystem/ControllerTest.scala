@@ -17,8 +17,8 @@ class ControllerTest extends FunSuite {
 
   test("testPickElevator") {
 
-    val elev1 = spy(new Elevator(1,5,8))
-    val elev2 = spy(new Elevator(1,2,2))
+    val elev1 = new Elevator(1,5)
+    val elev2 = spy(new Elevator(1,2))
     val elevators: List[Elevator] = List(elev1, elev2)
     val controller = new Controller(elevators)
 
@@ -28,8 +28,8 @@ class ControllerTest extends FunSuite {
   }
 
   test("testAssign") {
-    val elev1 = new Elevator(1,5,8)
-    val elev2 = new Elevator(1,2,2)
+    val elev1 = new Elevator(1,5)
+    val elev2 = new Elevator(1,2)
     val elevators: List[Elevator] = List(elev1, elev2)
     val controller = new Controller(elevators)
 
