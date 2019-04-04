@@ -21,9 +21,6 @@ class Elevator(
   }
 
   def update(newLocation: Int, newDestination: Int): Unit = {
-    if(location != destination)
-      destinationManager.forceHead(destination)
-
     location = newLocation
     destination = newDestination
   }

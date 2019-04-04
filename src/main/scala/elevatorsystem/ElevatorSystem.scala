@@ -20,9 +20,7 @@ class ElevatorSystem(
     validator.checkFloor(destination)
 
     val elevator: Elevator = getElevatorById(id)
-
-    if(elevator.location != location || elevator.destination != destination)
-      elevator.update(location, destination)
+    elevator.update(location, destination)
   }
 
   override def step(): Unit = {

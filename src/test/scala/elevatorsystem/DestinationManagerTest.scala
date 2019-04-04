@@ -12,14 +12,9 @@ class DestinationManagerTest extends FunSuite {
     assertResult(scala.collection.mutable.Queue((1,1),(2,1)))(manager.destinations)
   }
 
-  test("testForceHead") {
-    manager.forceHead(3)
-    assertResult(scala.collection.mutable.Queue((3,0),(1,1),(2,1)))(manager.destinations)
-  }
-
   test("testNext") {
     val res: Int = manager.next()
-    assertResult(3)(res)
-    assertResult( scala.collection.mutable.Queue((1,1),(2,1)))(manager.destinations)
+    assertResult(1)(res)
+    assertResult( scala.collection.mutable.Queue((2,1)))(manager.destinations)
   }
 }
