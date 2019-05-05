@@ -6,13 +6,13 @@ class Controller (
                   = new NormalControllerMode()
                 ) {
 
-  @throws(classOf[Exception])
+  @throws(classOf[IllegalArgumentException])
   def assign(location: Int, direction: Int): Unit = {
     val elevator: Elevator = pickElevator(location,direction)
     elevator.call(location, direction)
   }
 
-  @throws(classOf[Exception])
+  @throws(classOf[IllegalArgumentException])
   def pickElevator(location: Int, direction: Int): Elevator = {
     verifyElevatorAvailable()
 
@@ -27,8 +27,8 @@ class Controller (
     minCostPair._1
   }
 
-  @throws(classOf[Exception])
+  @throws(classOf[IllegalArgumentException])
   def verifyElevatorAvailable(): Unit = {
-    if(elevators.isEmpty) throw new Exception("Elevator does not exist")
+    if(elevators.isEmpty) throw new IllegalArgumentException("Elevator does not exist")
   }
 }

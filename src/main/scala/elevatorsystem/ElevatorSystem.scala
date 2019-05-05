@@ -35,7 +35,7 @@ class ElevatorSystem(
     status
   }
 
-  @throws(classOf[Exception])
+  @throws(classOf[IllegalArgumentException])
   def getElevatorById(id: Int): Elevator = {
     val elevator: Option[Elevator] = elevators.toStream.find(e => e.id == id)
     validator.checkElevator(elevator, id)
